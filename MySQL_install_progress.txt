@@ -1,0 +1,22 @@
+MySQL
+oracle download
+database
+mysql
+login 안하고 download가능
+default
+python check안하고 그냥 continue
+execute 후 대기
+계속 next
+MySQL Root Password: mysql
+repeat: mysql
+next execute finish
+password mysql check
+
+
+계정 추가
++ Setup New Connection
+Connection Name: spring_practice
+Username: spring
+test connection
+spring 
+OK
