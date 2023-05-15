@@ -18,3 +18,14 @@ CREATE TABLE jdbc_board(
     content VARCHAR(2000),
     reg_date DATETIME DEFAULT current_timestamp
 );
+
+#자유게시판 테이블 추가 0515
+CREATE TABLE freeboard(
+	bno INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(300) NOT NULL,
+    writer VARCHAR(50) NOT NULL,
+    content VARCHAR(3000) NOT NULL,
+    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_date DATETIME DEFAULT NULL
+);
+
