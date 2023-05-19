@@ -39,8 +39,10 @@ LIMIT 0, 10;
 #206~ DESC
 # (page-1) *cpp
 
+drop table users;
+
 CREATE TABLE users(
-	user_id VARCHAR(50) PRIMARY KEY,
+	user_id VARCHAR(50) PRIMARY KEY NOT NULL,
     user_pw VARCHAR(50) NOT NULL,
     user_name VARCHAR(50) NOT NULL,
     user_phone1 VARCHAR(50),
@@ -52,12 +54,14 @@ CREATE TABLE users(
     addr_zip_num VARCHAR(50),
     reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
-
+INSERT INTO users VALUES ('abc1234', 'aaa11111', '이름', '폰1', '폰2', '이메일1', '이메일2', '주소', '상세주소', '집넘', '2023-05-19 14:46:00');
 SELECT * FROM users;
+SELECT * FROM users WHERE user_id = 'dhwjddnjs';
+commit;
 
 SELECT count(*) FROM users
 		WHERE user_id='abc1234';
 SELECT user_id, user_pw FROM users
-		WHERE user_id='abc1234'AND user_pw='aaa1111!';
+		WHERE user_id='abc1234'AND user_pw='aaa11111';
         
 select * from jdbc_board;
