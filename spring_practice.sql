@@ -57,7 +57,6 @@ CREATE TABLE users(
 INSERT INTO users VALUES ('abc1234', 'aaa11111', '이름', '폰1', '폰2', '이메일1', '이메일2', '주소', '상세주소', '집넘', '2023-05-19 14:46:00');
 SELECT * FROM users;
 SELECT * FROM users WHERE user_id = 'dhwjddnjs';
-commit;
 
 SELECT count(*) FROM users
 		WHERE user_id='abc1234';
@@ -65,3 +64,33 @@ SELECT user_id, user_pw FROM users
 		WHERE user_id='abc1234'AND user_pw='aaa11111';
         
 select * from jdbc_board;
+
+SELECT 
+	user_name, user_phone1, user_phone2,
+	user_email1, user_email2, addr_basic,
+    addr_detail, addr_zip_num, 
+    f.bno, f.title, f.reg_date
+FROM users u 
+LEFT JOIN freeboard f
+ON u.user_id = f.writer
+WHERE u.user_id = 'abc1234'
+ORDER BY f.bno DESC
+LIMIT 0, 10;
+
+SELECT * FROM freeboard;
+commit;
+
+CREATE TABLE freereply(
+	rno INT PRIMARY KEY AUTO_INCREMENT,
+    bno INT,
+    
+    FOREIGN KEY (bno) 
+    REFERENCES freeboard(bno)
+    ON DELETE CASCADE,
+    
+    reply VARCHAR(1000),
+    reply_id VARCHAR(50),
+    reply_pw VARCHAR(50),
+    reply_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_date DATETIME DEFAULT NULL 
+);
