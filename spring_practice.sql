@@ -94,3 +94,26 @@ CREATE TABLE freereply(
     reply_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     update_date DATETIME DEFAULT NULL 
 );
+
+UPDATE freereply 
+SET update_date = '2023-05-24 00:00:00'
+WHERE rno = 11;
+
+SELECT * FROM freereply;
+
+SELECT * FROM freeboard;
+
+SELECT f.*,
+	(SELECT COUNT(*) FROM freereply WHERE bno = f.bno)
+    AS reply_cnt
+FROM freeboard f
+ORDER BY bno DESC
+LIMIT 0, 10;    
+
+SELECT f.*, r.reply_cnt
+FROM freeboard f
+LEFT JOIN (SELECT bno, COUNT(*) AS reply_cnt FROM freereply
+GROUP BY bno) r
+ON f.bno = r.bno
+ORDER BY bno DESC
+LIMIT 0, 10;
