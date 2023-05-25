@@ -31,6 +31,8 @@ CREATE TABLE freeboard(
 
 SELECT * FROM freeboard;
 
+SELECT * FROM users;
+
 SELECT COUNT(*) FROM freeboard;
 
 SELECT * FROM freeboard
@@ -117,3 +119,49 @@ GROUP BY bno) r
 ON f.bno = r.bno
 ORDER BY bno DESC
 LIMIT 0, 10;
+
+#SNS 게시판
+CREATE TABLE snsboard(
+	bno INT PRIMARY KEY AUTO_INCREMENT,
+    writer VARCHAR(50) NOT NULL, 
+    upload_path VARCHAR(100) NOT NULL,
+    file_loca VARCHAR(100) NOT NULL,
+    file_name VARCHAR(50) NOT NULL,
+    file_real_name VARCHAR(50) NOT NULL,
+    content VARCHAR(2000),
+    reg_Date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+SELECT * FROM snsboard;
+
+
+
+
+
+
+
+CREATE TABLE party (
+	party_no INT PRIMARY KEY AUTO_INCREMENT,
+	rest_id VARCHAR(100) NOT NULL,
+    writer VARCHAR(50),
+    title VARCHAR(50),
+    content VARCHAR(200),
+    reg_date DATETIME DEFAULT current_timestamp,
+    update_date DATETIME DEFAULT current_timestamp
+);
+
+INSERT INTO party VALUES('2', 'k', 'b', 'c', 'd', '2023-05-24 19:40:00', '2023-05-24 19:41:00' );
+
+SELECT * FROM party;
+SELECT * 
+		FROM party
+		ORDER BY party_no DESC;
+        
+CREATE TABLE store(
+	sno INT PRIMARY KEY AUTO_INCREMENT,
+    siteTel VARCHAR(100) NOT NULL,
+    rdnWhlAddr VARCHAR(300) NOT NULL,
+    bplcNm VARCHAR(50) NOT NULL,
+    uptaeNm VARCHAR(20) NOT NULL,
+    x long NOT NULL, y long NOT NULL
+);        
