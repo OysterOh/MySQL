@@ -31,7 +31,8 @@ CREATE TABLE freeboard(
 
 SELECT * FROM freeboard;
 
-SELECT * FROM users;
+SELECT * FROM users
+ORDER BY reg_date;
 
 SELECT COUNT(*) FROM freeboard;
 
@@ -42,6 +43,19 @@ LIMIT 0, 10;
 # (page-1) *cpp
 
 drop table users;
+CREATE TABLE users(
+	user_id VARCHAR(50) PRIMARY KEY,
+   user_pw VARCHAR(50) NOT NULL,
+   user_name VARCHAR(50) NOT NULL,
+   user_nick VARCHAR(50) NOT NULL,
+   user_phone VARCHAR(50),
+   user_email1 VARCHAR(50),
+   user_email2 VARCHAR(50),
+   addr_mine VARCHAR(300),
+   addr_close VARCHAR(300),
+   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+   temperature INT NOT NULL DEFAULT '0'
+);
 
 CREATE TABLE users(
 	user_id VARCHAR(50) PRIMARY KEY NOT NULL,
@@ -177,3 +191,16 @@ INSERT INTO store VALUES
 ('9', '024654999', '서울특별시 광진구 동일로22길 81 (화양동)', '스마일맥주', '호프/통닭', '206000.986088047', '448808.090477312');
 
 SELECT * FROM store;
+
+
+ CREATE TABLE review(
+ 	review_no INT PRIMARY KEY AUTO_INCREMENT,
+ 	writer VARCHAR(50) NOT NULL,
+ 	rest_id VARCHAR(50) NOT NULL,
+ 	content VARCHAR(3000) NOT NULL,
+ 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+ 	update_date DATETIME DEFAULT NULL
+ );
+INSERT INTO review VALUES
+('1', '오정원', 'dhwjd', '여긴콘텐트', '2023-05-30 19:15:00', '2023-05-30 19:16:00');
+DROP TABLE review;
