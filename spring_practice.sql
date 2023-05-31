@@ -192,15 +192,43 @@ INSERT INTO store VALUES
 
 SELECT * FROM store;
 
-
+#review 후기 게시판
  CREATE TABLE review(
  	review_no INT PRIMARY KEY AUTO_INCREMENT,
  	writer VARCHAR(50) NOT NULL,
- 	rest_id VARCHAR(50) NOT NULL,
+ 	rest_id VARCHAR(50u5) NOT NULL,
+    title VARCHAR(300) NOT NULL,
  	content VARCHAR(3000) NOT NULL,
  	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
  	update_date DATETIME DEFAULT NULL
  );
 INSERT INTO review VALUES
-('1', '오정원', 'dhwjd', '여긴콘텐트', '2023-05-30 19:15:00', '2023-05-30 19:16:00');
+('1', '오정원', 'dhwjd', '제목', '여긴콘텐트', '2023-05-30 19:15:00', '2023-05-30 19:16:00');
+
+
+INSERT INTO review (writer, rest_id, title, content, reg_date, update_date)
+VALUES
+('John Doe', 'ABC123', 'Great experience', 'I had a great experience at the restaurant.', '2023-05-30 19:15:00', '2023-05-30 19:16:00'),
+('Jane Smith', 'DEF456', 'Delicious food', 'The food was absolutely delicious.', '2023-05-30 20:30:00', NULL),
+('Mike Johnson', 'GHI789', 'Friendly staff', 'The staff was very friendly and helpful.', '2023-05-31 09:45:00', '2023-05-31 10:00:00');
+
+SELECT * FROM review;
+SELECT * FROM users;
+
+
+DROP TABLE users;
 DROP TABLE review;
+
+#users 회원 정보
+CREATE TABLE users(
+   user_id VARCHAR(50) PRIMARY KEY,
+   user_pw VARCHAR(50) NOT NULL,
+   user_name VARCHAR(50) NOT NULL,
+   user_nick VARCHAR(50) NOT NULL,
+   user_email1 VARCHAR(50),
+   user_email2 VARCHAR(50),
+   addr_gu VARCHAR(300),
+   addr_dong VARCHAR(300),
+   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+   temperature INT NOT NULL DEFAULT '0'
+);
