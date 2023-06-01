@@ -196,7 +196,7 @@ SELECT * FROM store;
  CREATE TABLE review(
  	review_no INT PRIMARY KEY AUTO_INCREMENT,
  	writer VARCHAR(50) NOT NULL,
- 	rest_id VARCHAR(50u5) NOT NULL,
+ 	rest_id VARCHAR(50) NOT NULL,
     title VARCHAR(300) NOT NULL,
  	content VARCHAR(3000) NOT NULL,
  	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -232,3 +232,22 @@ CREATE TABLE users(
    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
    temperature INT NOT NULL DEFAULT '0'
 );
+
+DROP TABLE reviewReply;
+
+#reviewReply 후기게시판 댓글
+ CREATE TABLE reviewReply(
+ 	reply_no INT PRIMARY KEY AUTO_INCREMENT,
+	review_no INT NOT NULL,
+ 	party_no INT NOT NULL,
+ 	writer VARCHAR(50),
+ 	content VARCHAR(1000),
+ 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+ 	update_date DATETIME DEFAULT NULL
+ );
+ 
+INSERT INTO reviewReply (reply_no, review_no, party_no, writer, content, reg_date, update_date)
+VALUES (1, 14, 1, 'John Doe', 'Sample reply content', '2023-05-31 19:15:07', NULL);
+
+
+SELECT * FROM reviewReply;
