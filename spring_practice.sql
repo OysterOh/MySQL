@@ -164,7 +164,7 @@ CREATE TABLE party (
     update_date DATETIME DEFAULT current_timestamp
 );
 
-INSERT INTO party VALUES('2', 'k', 'b', 'c', 'd', '2023-05-24 19:40:00', '2023-05-24 19:41:00' );
+INSERT INTO party VALUES('3', 'hansot', 'jungwon2433', 'c', 'd', '2023-05-31 19:40:00', '2023-06-02 07:41:00' );
 
 SELECT * FROM party;
 SELECT * 
@@ -192,11 +192,13 @@ INSERT INTO store VALUES
 
 SELECT * FROM store;
 
+DROP TABLE review;
+
 #review 후기 게시판
  CREATE TABLE review(
  	review_no INT PRIMARY KEY AUTO_INCREMENT,
  	writer VARCHAR(50) NOT NULL,
- 	rest_id VARCHAR(50) NOT NULL,
+ 	sno INT NOT NULL,
     title VARCHAR(300) NOT NULL,
  	content VARCHAR(3000) NOT NULL,
  	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -205,12 +207,18 @@ SELECT * FROM store;
 INSERT INTO review VALUES
 ('1', '오정원', 'dhwjd', '제목', '여긴콘텐트', '2023-05-30 19:15:00', '2023-05-30 19:16:00');
 
-
-INSERT INTO review (writer, rest_id, title, content, reg_date, update_date)
+INSERT INTO review (writer, sno, title, content, reg_date, update_date)
 VALUES
-('John Doe', 'ABC123', 'Great experience', 'I had a great experience at the restaurant.', '2023-05-30 19:15:00', '2023-05-30 19:16:00'),
-('Jane Smith', 'DEF456', 'Delicious food', 'The food was absolutely delicious.', '2023-05-30 20:30:00', NULL),
-('Mike Johnson', 'GHI789', 'Friendly staff', 'The staff was very friendly and helpful.', '2023-05-31 09:45:00', '2023-05-31 10:00:00');
+    ('John Doe', 1, 'Great experience', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2023-06-02 10:00:00', NULL),
+    ('Jane Smith', 2, 'Delicious food', 'Nulla vehicula tortor vitae ultrices iaculis.', '2023-05-02 14:30:00', NULL),
+    ('Michael Johnson', 3, 'Friendly staff', 'Pellentesque commodo sapien ut velit pharetra, in semper purus feugiat.', '2023-05-03 16:45:00', NULL),
+    ('Emily Davis', 4, 'Amazing service', 'Donec tincidunt lacus sit amet ipsum condimentum interdum.', '2023-05-04 09:15:00', NULL),
+    ('Daniel Wilson', 5, 'Highly recommended', 'Vestibulum et lectus vel nulla iaculis hendrerit.', '2023-05-05 12:00:00', NULL),
+    ('Olivia Martinez', 6, 'Cozy atmosphere', 'Cras eu sapien ut odio pulvinar vulputate nec eget nisi.', '2023-05-06 17:30:00', NULL),
+    ('Sophia Taylor', 7, 'Excellent quality', 'Sed a felis finibus, tincidunt massa non, lobortis lacus.', '2023-05-07 13:20:00', NULL),
+    ('William Anderson', 8, 'Good value for money', 'Vivamus fermentum mi a tellus pharetra finibus.', '2023-05-08 11:10:00', NULL),
+    ('James Brown', 9, 'Quick service', 'Integer feugiat dolor sit amet est gravida, ut cursus ipsum pharetra.', '2023-05-09 15:40:00', NULL),
+    ('Ava Thomas', 10, 'Tasty dishes', 'Fusce commodo odio et purus aliquet, in bibendum orci laoreet.', '2023-05-10 18:30:00', NULL);
 
 SELECT * FROM review;
 SELECT * FROM users;
@@ -222,15 +230,14 @@ DROP TABLE review;
 #users 회원 정보
 CREATE TABLE users(
    user_id VARCHAR(50) PRIMARY KEY,
-   user_pw VARCHAR(50) NOT NULL,
+   user_pw VARCHAR(300) NOT NULL,
    user_name VARCHAR(50) NOT NULL,
    user_nick VARCHAR(50) NOT NULL,
    user_email1 VARCHAR(50),
    user_email2 VARCHAR(50),
    addr_gu VARCHAR(300),
    addr_dong VARCHAR(300),
-   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-   temperature INT NOT NULL DEFAULT '0'
+   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 DROP TABLE reviewReply;
