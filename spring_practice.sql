@@ -194,6 +194,7 @@ SELECT * FROM store;
 
 DROP TABLE review;
 
+TRUNCATE review;
 #review 후기 게시판
  CREATE TABLE review(
  	review_no INT PRIMARY KEY AUTO_INCREMENT,
@@ -245,10 +246,11 @@ DROP TABLE reviewReply;
 #reviewReply 후기게시판 댓글
  CREATE TABLE reviewReply(
  	reply_no INT PRIMARY KEY AUTO_INCREMENT,
-	review_no INT NOT NULL,
- 	party_no INT NOT NULL,
- 	writer VARCHAR(50),
- 	content VARCHAR(1000),
+ 	review_no INT NOT NULL,
+ 	
+ 	review_reply VARCHAR(1000),
+ 	reply_id VARCHAR(50),
+ 	reply_pw VARCHAR(100),
  	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
  	update_date DATETIME DEFAULT NULL
  );
@@ -258,3 +260,20 @@ VALUES (1, 14, 1, 'John Doe', 'Sample reply content', '2023-05-31 19:15:07', NUL
 
 
 SELECT * FROM reviewReply;
+
+CREATE TABLE participants (
+    p_no INT PRIMARY KEY AUTO_INCREMENT,
+    party_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE store (
+    sno INT PRIMARY KEY,
+    site_tel VARCHAR(30),
+    rdn_whl_addr VARCHAR(100),
+    bplc_nm VARCHAR(100),
+    uptae_nm VARCHAR(20),
+    dtlstatenm VARCHAR(10),
+    x VARCHAR(50),
+    y VARCHAR(50)
+);
