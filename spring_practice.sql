@@ -153,17 +153,44 @@ SELECT * FROM snsboard;
 
 
 
-
 CREATE TABLE party (
-	party_no INT PRIMARY KEY AUTO_INCREMENT,
-	rest_id VARCHAR(100) NOT NULL,
-    writer VARCHAR(50),
-    title VARCHAR(50),
-    content VARCHAR(200),
-    reg_date DATETIME DEFAULT current_timestamp,
-    update_date DATETIME DEFAULT current_timestamp
+    party_no INT PRIMARY KEY AUTO_INCREMENT,
+    sno INT NOT NULL,
+    bplc_nm VARCHAR(50) NOT NULL,
+    writer VARCHAR(50) NOT NULL,
+    writer_nick VARCHAR(50),
+    title VARCHAR(100) NOT NULL,
+    content VARCHAR(3000) NOT NULL,
+    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_date DATETIME DEFAULT NULL,
+    max INT NOT NULL,
+    upload_path VARCHAR(50),
+    file_name VARCHAR(200)
 );
 
+TRUNCATE party;
+DROP TABLE party;
+SELECT * FROM party;
+
+CREATE TABLE participants (
+    p_no INT PRIMARY KEY AUTO_INCREMENT,
+    party_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+DROP TABLE participants;
+
+CREATE TABLE participants (
+    p_no INT PRIMARY KEY AUTO_INCREMENT,
+    party_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+SELECT * FROM participants;
+
+ INSERT INTO party
+    (sno, bplc_nm, writer, title, content, max, file_name, upload_path)
+    VALUES (1, 'Some Place', '박카스', 'Some Title', 'Some Content', 5, 'somefile.jpg', 'uploads');
+    
+    
 INSERT INTO party VALUES('3', 'hansot', 'jungwon2433', 'c', 'd', '2023-05-31 19:40:00', '2023-06-02 07:41:00' );
 
 SELECT * FROM party;
@@ -179,16 +206,6 @@ CREATE TABLE store(
     uptaeNm VARCHAR(20) NOT NULL,
     x long NOT NULL, y long NOT NULL
 );        
-
-INSERT INTO store VALUES
-('2', '027653606', '서울특별시 종로구 돈화문로5길 18 (돈의동)', '둘둘치킨', '한식', '199137.684631002', '452059.348314465'),
-('3', '027356644', '서울특별시 종로구 인사동14길 8 (관훈동)', '가회', '한식', '198565.903249145', '452491.15799313'),
-('4', '0237893446', '서울특별시 중구 무교로 17-23 (무교동)', '남도 수랏간', '일식', '198046.780200218', '198046.780200218'),
-('5', '0222784975', '서울특별시 중구 충무로2길 32-4, 1층 (충무로4가)', '제주 연탄집', '일식', '199466.317788539', '451108.71319358'),
-('6', '027948829', '서울특별시 중구 세종대로18길 2 (태평로2가)', '프라자', '경양식', '197923.196829665', '451275.673249671'),
-('7', '023181118', '서울특별시 용산구 독서당로 22 (한남동,1층점포19호)', '한남설렁탕', '한식', '197923.196829665', '447561.558961093'),
-('8', '0222826818', '서울특별시 성동구 행당로 119-6 (행당동)', '오코노미 앤 우동', '정종/대포집/소주방', '202780.288666842', '450670.722648427'),
-('9', '024654999', '서울특별시 광진구 동일로22길 81 (화양동)', '스마일맥주', '호프/통닭', '206000.986088047', '448808.090477312');
 
 SELECT * FROM store;
 
@@ -247,12 +264,9 @@ DROP TABLE reviewReply;
  CREATE TABLE reviewReply(
  	reply_no INT PRIMARY KEY AUTO_INCREMENT,
  	review_no INT NOT NULL,
- 	
- 	review_reply VARCHAR(1000),
+ 	reply VARCHAR(1000),
  	reply_id VARCHAR(50),
- 	reply_pw VARCHAR(100),
- 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
- 	update_date DATETIME DEFAULT NULL
+ 	reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
  );
  
 INSERT INTO reviewReply (reply_no, review_no, party_no, writer, content, reg_date, update_date)
@@ -277,3 +291,34 @@ CREATE TABLE store (
     x VARCHAR(50),
     y VARCHAR(50)
 );
+SELECT * FROM store;
+
+SELECT * FROM party;
+SELECT p.*, s.rdn_whl_addr FROM party p JOIN store s ON p.sno = s.sno ORDER BY party_no DESC 
+LIMIT 0, 10; 
+
+
+CREATE TABLE star(
+    star_no INT PRIMARY KEY AUTO_INCREMENT,
+    sno INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    star_rate DOUBLE NOT NULL
+);
+
+CREATE TABLE partyLike(
+    lno INT PRIMARY KEY AUTO_INCREMENT,
+    party_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE reviewLike(
+    lno INT PRIMARY KEY AUTO_INCREMENT,
+    review_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+
+
+
+
+
+
