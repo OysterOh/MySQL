@@ -153,20 +153,20 @@ SELECT * FROM snsboard;
 
 
 
-CREATE TABLE party (
-    party_no INT PRIMARY KEY AUTO_INCREMENT,
-    sno INT NOT NULL,
-    bplc_nm VARCHAR(50) NOT NULL,
-    writer VARCHAR(50) NOT NULL,
-    writer_nick VARCHAR(50),
-    title VARCHAR(100) NOT NULL,
-    content VARCHAR(3000) NOT NULL,
-    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    update_date DATETIME DEFAULT NULL,
-    max INT NOT NULL,
-    upload_path VARCHAR(50),
-    file_name VARCHAR(200)
-);
+	CREATE TABLE party (
+	    party_no INT PRIMARY KEY AUTO_INCREMENT,
+	    sno INT NOT NULL,
+	    bplc_nm VARCHAR(50) NOT NULL,
+	    writer VARCHAR(50) NOT NULL,
+	    title VARCHAR(100) NOT NULL,
+	    content VARCHAR(3000) NOT NULL,
+	    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+	    update_date DATETIME DEFAULT NULL,
+	    max INT NOT NULL,
+	    upload_path VARCHAR(50),
+	    file_name VARCHAR(200) NOT NULL,
+	    view_num INT DEFAULT 0
+	);
 
 TRUNCATE party;
 DROP TABLE party;
@@ -318,7 +318,7 @@ CREATE TABLE reviewLike(
 );
 
 
-
+SELECT * FROM users;
 
 
 
