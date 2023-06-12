@@ -320,5 +320,91 @@ CREATE TABLE reviewLike(
 
 SELECT * FROM users;
 
+SELECT * FROM review;
 
 
+
+
+
+CREATE TABLE party (
+    party_no INT PRIMARY KEY AUTO_INCREMENT,
+    sno INT NOT NULL,
+    bplc_nm VARCHAR(50) NOT NULL,
+    writer VARCHAR(50) NOT NULL,
+    writer_nick VARCHAR(50),
+    title VARCHAR(100) NOT NULL,
+    content VARCHAR(3000) NOT NULL,
+    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_date DATETIME DEFAULT NULL,
+    max INT NOT NULL,
+    upload_path VARCHAR(50),
+    file_name VARCHAR(200)
+);
+
+CREATE TABLE participants (
+    p_no INT PRIMARY KEY AUTO_INCREMENT,
+    party_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE store (
+    sno INT PRIMARY KEY,
+    site_tel VARCHAR(30),
+    rdn_whl_addr VARCHAR(100),
+    bplc_nm VARCHAR(100),
+    uptae_nm VARCHAR(20),
+    dtlstatenm VARCHAR(10),
+    x VARCHAR(50),
+    y VARCHAR(50)
+);
+
+CREATE TABLE users(
+   user_id VARCHAR(50) PRIMARY KEY,
+   user_pw VARCHAR(300) NOT NULL,
+   user_name VARCHAR(50) NOT NULL,
+   user_nick VARCHAR(50) NOT NULL,
+   user_email1 VARCHAR(50),
+   user_email2 VARCHAR(50),
+   addr_gu VARCHAR(300),
+   addr_dong VARCHAR(300),
+   reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE review(
+        review_no INT PRIMARY KEY AUTO_INCREMENT,
+        writer VARCHAR(50) NOT NULL,
+        sno INT NOT NULL,
+        title VARCHAR(300) NOT NULL,
+        content VARCHAR(3000) NOT NULL,
+        reg_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+        update_date DATETIME DEFAULT NULL
+    );
+    
+CREATE TABLE star(
+    star_no INT PRIMARY KEY AUTO_INCREMENT,
+    sno INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    star_rate DOUBLE NOT NULL
+);
+
+CREATE TABLE partyLike(
+    lno INT PRIMARY KEY AUTO_INCREMENT,
+    party_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE reviewLike(
+    lno INT PRIMARY KEY AUTO_INCREMENT,
+    review_no INT NOT NULL,
+    user_id VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE reviewreply (
+    reply_no INT PRIMARY KEY AUTO_INCREMENT,
+    review_no INT NOT NULL,                
+    reply_id VARCHAR(50) NOT NULL,
+    reply VARCHAR(100) NOT NULL,
+    reg_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+SELECT * FROM participants;
+SELECT * FROM party;
